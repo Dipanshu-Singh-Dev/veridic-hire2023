@@ -9,7 +9,10 @@ const Home = () => {
   React.useEffect(() => {
     axios
       .get(
-        "https://techcrunch.com/wp-json/wp/v2/posts?per_page=20&context=embed"
+        "https://techcrunch.com/wp-json/wp/v2/posts?per_page=20&context=embed",
+        {
+          timeout: 5000,
+        }
       )
       .then((res) => {
         setLoading(false);
@@ -18,7 +21,11 @@ const Home = () => {
       .catch((err) => {
         setLoading(false);
         setError(true);
-        return <p>Something went wrong :(</p>;
+        if (error.code === "ECONNABORTED") {
+          return <p>Sorry, request timed out :(</p>;
+        } else {
+          return <p>Something went wrong :(</p>;
+        }
       });
   }, []);
   return loading ? (
