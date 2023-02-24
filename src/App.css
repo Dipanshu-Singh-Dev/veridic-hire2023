@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+#CardsContainer{
+  margin: auto;
+  margin-top: 50px;
+  max-width: 90%;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4,1fr);
+}
+@media only screen and (max-width: 768px) {
+  #CardsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #CardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.thumbnail{
+  max-width: 100%;
+}
+
+.card:hover{
+transform: scale(1.05);
+  transition: transform .25s;
+}
